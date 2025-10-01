@@ -1,0 +1,53 @@
+"use client";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+export default function Home() {
+  const [tasks, settasks] = useState([]);
+
+  const { register, handleSubmit, reset } = useForm();
+
+  const hello = (data) => {
+    if(data.Tasks)
+    settasks([...tasks, data.Tasks]);
+    reset();
+  };
+  const hello1 = (data) => {
+    const arr = tasks.filter((x, i) => {
+      if (i != data) return true;
+      else return false;
+    })
+    settasks(arr);
+  }
+  return (
+    <div className="p-4 max-w mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+      <form onSubmit={handleSubmit(hello)} className="mb-4 flex gap-2">
+        <input
+          {...register("Tasks")}
+          type="text"
+          placeholder="Enter a task"
+          className="border p-2 flex-1 rounded"
+        />
+        <button type="submit" className="bg-blue-500 text-white px-4 rounded">
+          Add
+        </button>
+
+      </form>
+
+      <ul>
+        {tasks.map((task, index) => (
+          <li key={index} className="border-b py-2 flex justify-between">
+            {task}
+            <button onClick={()=>hello1(index)}>
+              Delete
+            </button>
+          </li>
+
+        ))
+        }
+
+      </ul>
+    </div>
+  );
+}
