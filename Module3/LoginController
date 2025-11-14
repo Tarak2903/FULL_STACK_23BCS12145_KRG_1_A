@@ -1,0 +1,40 @@
+package com.example.demo.Controller;
+
+import com.example.demo.Model.User;
+import com.example.demo.Service.LoginServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+public class LoginController {
+    @Autowired
+    LoginServices loginServices;
+    @PostMapping("/Signup")
+    public ResponseEntity<String> signup(@RequestBody User user1) {
+        User user=new User(user1.getUsername(), user1.getPassword());
+        Optional<User> x= loginServices.Signup(user);
+        if(x.isPresent()){
+            return new ResponseEntity<>(HttpStatus.OK   );
+        }
+     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+    }
+    @PostMapping("/Login")
+    public ResponseEntity<String> login(@RequestBody User user1) {
+        Optional<User>x=loginServices.Login(new User(user1.getUsername(), user1.getPassword()));
+        if(x.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new  ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+
+}

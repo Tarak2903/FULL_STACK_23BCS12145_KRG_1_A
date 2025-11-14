@@ -1,0 +1,35 @@
+"use client";
+import React from "react";
+
+const StudentCard = ({ name, roll, course }) => {
+  return (
+    <div className="border p-4 rounded shadow mb-4">
+      <h2 className="font-bold text-lg">{name}</h2>
+      <p>Roll No: {roll}</p>
+      <p>Course: {course}</p>
+    </div>
+  );
+};
+
+export default function Home() {
+  const students = [
+    { name: "Tarak", roll: "1", course: "JAVA" },
+    { name: "b", roll: "12", course: "Cs" },
+    { name: "Clone", roll: "3", course: "C++" },
+    { name: "Dev", roll: "4", course: "C#" },
+  ];
+
+  return (
+    <div className="p-4 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Students</h1>
+      {students.map((student, index) => (
+        <StudentCard
+          key={index}
+          name={student.name}
+          roll={student.roll}
+          course={student.course}
+        />
+      ))}
+    </div>
+  );
+}
