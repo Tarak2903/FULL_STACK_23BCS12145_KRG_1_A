@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>FarmerAid.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>Module 6</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Farmer_Aid</name>
 	<description>Demo project for Spring Boot</description>
@@ -77,7 +77,7 @@
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId> <!-- enables JSON serialization -->
+            <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>

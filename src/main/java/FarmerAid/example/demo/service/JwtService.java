@@ -12,7 +12,7 @@ import java.util.Date;
 public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
-        private final long exptime = 1000*60*60;
+        private final long exptime = 1000*60*60*24;
 
 
         public String generateToken(String email){
